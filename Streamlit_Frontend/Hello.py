@@ -442,7 +442,7 @@ st.markdown("""
     </p>
     <p style="font-size: 12px; margin: 0;">
         Developed with ❤️ using Python, Machine Learning & Streamlit | 
-        <a href="https://github.com/zakaria-narjis/Diet-Recommendation-System" target="_blank" style="color: #667eea;">GitHub Repository</a>
+        <a href="https://github.com/imthiyaz-official/Smart-Diet-Recommendation-System" target="_blank" style="color: #667eea;">GitHub Repository</a>
     </p>
 </div>
 """, unsafe_allow_html=True)
