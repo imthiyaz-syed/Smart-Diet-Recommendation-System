@@ -174,7 +174,7 @@ class Generator:
             "sunflower oil", "grapeseed oil", "walnut oil",
             "almond oil", "flaxseed oil", "mustard oil",
             "spices", "herbs", "ginger", "garlic powder",
-            "onion powder", "paprika", "cumin", "corriander",
+            "onion powder", "paprika", "cumin", "coriander",
             "turmeric", "cinnamon", "nutmeg", "cloves",
             "cardamom", "star anise", "fennel seeds",
             "mustard seeds", "sesame seeds", "poppy seeds",
@@ -602,17 +602,6 @@ class Generator:
             }
         }
     
-    def generate_simple(self) -> List[Dict[str, Any]]:
-        """
-        Simplified version of generate() that returns just the recipes list
-        This is for backward compatibility with your Custom_Food_Recommendation.py
-        """
-        result = self.generate()
-        if result.get("success"):
-            return result.get("output", [])
-        else:
-            return []
-    
     def get_response_stats(self) -> Dict[str, Any]:
         """
         Get statistics about the last response
@@ -644,26 +633,6 @@ class Generator:
         
         return results
 
-
-# Global instance for easy import
-_generator_instance = None
-
-def get_generator_instance(
-    nutrition_input: Optional[List[float]] = None,
-    ingredients: Optional[List[str]] = None,
-    params: Optional[Dict[str, Any]] = None,
-    api_url: Optional[str] = None
-) -> Generator:
-    """Get or create a singleton generator instance."""
-    global _generator_instance
-    if _generator_instance is None:
-        _generator_instance = Generator(
-            nutrition_input=nutrition_input,
-            ingredients=ingredients,
-            params=params,
-            api_url=api_url
-        )
-    return _generator_instance
 
 # ================= TEST & EXAMPLE USAGE =================
 if __name__ == "__main__":
