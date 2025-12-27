@@ -5,23 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Diet Recommendation System</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #0a2647 0%, #144272 30%, #205295 70%, #2C74B3 100%);
-            color: white;
-            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #334155;
+            line-height: 1.6;
             overflow-x: hidden;
-            position: relative;
         }
         
-        body::before {
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Section */
+        .header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: 80px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
             content: '';
             position: absolute;
             top: 0;
@@ -29,148 +44,183 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(32, 201, 151, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(0, 150, 255, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
-            z-index: -1;
+                radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(14, 165, 233, 0.1) 0%, transparent 50%);
         }
         
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
+        .header-content {
             position: relative;
-            z-index: 1;
-        }
-        
-        .header {
+            z-index: 2;
             text-align: center;
-            margin-bottom: 2rem;
-            padding: 3rem 2rem;
-            border-radius: 25px;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(12px);
-            box-shadow: 0 15px 35px rgba(0, 20, 60, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            width: 100%;
-            animation: fadeIn 1s ease-out;
-            position: relative;
-            overflow: hidden;
+            max-width: 800px;
+            margin: 0 auto;
         }
         
-        .header::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(to right, #00c6ff, #20c997, #00ffaa);
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 50px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
-        .title {
+        .logo i {
+            color: #60a5fa;
+            font-size: 1.5rem;
+        }
+        
+        .logo span {
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        h1 {
+            font-family: 'Poppins', sans-serif;
             font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(to right, #ffffff, #a6e3ff);
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #ffffff, #c7d2fe);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            letter-spacing: -0.5px;
         }
         
-        .title-highlight {
-            color: #20c997;
-            text-shadow: 0 0 20px rgba(32, 201, 151, 0.5);
-        }
-        
-        .subtitle {
+        .tagline {
             font-size: 1.2rem;
             opacity: 0.9;
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.6;
-            color: #d1e8ff;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
         }
         
-        .content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 2.5rem;
-            width: 100%;
-            margin-bottom: 3rem;
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(to right, #6366f1, #3b82f6);
+            color: white;
+            padding: 16px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+            border: none;
+            cursor: pointer;
         }
         
-        .card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            border-radius: 25px;
-            padding: 2.5rem;
-            flex: 1;
-            min-width: 300px;
-            max-width: 500px;
-            box-shadow: 0 10px 30px rgba(0, 20, 60, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.4);
+            background: linear-gradient(to right, #4f46e5, #2563eb);
+        }
+        
+        /* Main Content */
+        .content-section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 60px;
+            color: #1e293b;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #6366f1, #3b82f6);
+            border-radius: 2px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            animation: slideUp 0.8s ease-out;
+            border: 1px solid #f1f5f9;
             position: relative;
             overflow: hidden;
         }
         
-        .card::before {
+        .feature-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(32, 201, 151, 0.05) 0%, rgba(0, 150, 255, 0.05) 100%);
-            z-index: -1;
+            height: 5px;
+            background: linear-gradient(to right, #6366f1, #3b82f6);
         }
         
-        .card:hover {
+        .feature-card:hover {
             transform: translateY(-15px);
-            box-shadow: 0 25px 50px rgba(0, 20, 60, 0.4);
-            border-color: rgba(32, 201, 151, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
         
-        .card-title {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 18px;
             display: flex;
             align-items: center;
-            gap: 0.8rem;
-            color: #e6f2ff;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            color: white;
         }
         
-        .card-title i {
-            color: #20c997;
-            text-shadow: 0 0 10px rgba(32, 201, 151, 0.5);
+        .ai-icon {
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
         }
         
-        .card p {
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-            color: #d1e8ff;
+        .health-icon {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1e293b;
+        }
+        
+        .feature-card p {
+            color: #64748b;
+            margin-bottom: 25px;
         }
         
         .feature-list {
             list-style: none;
-            margin-bottom: 1.5rem;
         }
         
         .feature-list li {
-            padding: 0.6rem 0;
+            padding: 10px 0;
             display: flex;
             align-items: center;
-            gap: 0.8rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            gap: 12px;
+            border-bottom: 1px solid #f1f5f9;
         }
         
         .feature-list li:last-child {
@@ -178,342 +228,398 @@
         }
         
         .feature-list i {
-            color: #20c997;
+            color: #10b981;
             font-size: 0.9rem;
-            background: rgba(32, 201, 151, 0.1);
-            padding: 0.5rem;
+            background: #d1fae5;
+            padding: 6px;
             border-radius: 50%;
         }
         
-        .app-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            padding: 1.2rem 3rem;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #0a2647;
-            background: linear-gradient(to right, #20c997, #00a8ff);
+        /* Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            padding: 80px 0;
             text-align: center;
-            text-decoration: none;
-            border-radius: 50px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(32, 201, 151, 0.4);
-            margin-top: 1rem;
-            animation: pulse 2s infinite;
             position: relative;
             overflow: hidden;
-            z-index: 1;
         }
         
-        .app-button::before {
+        .stats-section::before {
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to right, #00a8ff, #20c997);
-            transition: all 0.5s ease;
-            z-index: -1;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(14, 165, 233, 0.1) 0%, transparent 40%);
         }
         
-        .app-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(32, 201, 151, 0.6);
-        }
-        
-        .app-button:hover::before {
-            left: 0;
-        }
-        
-        .app-button:active {
-            transform: translateY(0);
-        }
-        
-        .floating-elements {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            overflow: hidden;
-            z-index: -1;
-        }
-        
-        .floating-element {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.07);
-            animation: float 20s infinite linear;
-        }
-        
-        .footer {
-            margin-top: auto;
-            text-align: center;
-            padding: 1.5rem;
-            font-size: 0.9rem;
-            opacity: 0.8;
-            width: 100%;
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-            color: #a6c8e8;
-        }
-        
-        .tech-icons {
-            display: flex;
-            justify-content: center;
-            gap: 2.5rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        .tech-icon {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.8rem;
-            transition: all 0.3s ease;
-            padding: 1rem;
-            border-radius: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            min-width: 100px;
-        }
-        
-        .tech-icon:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 20px rgba(0, 20, 60, 0.2);
-        }
-        
-        .tech-icon i {
-            font-size: 2.5rem;
-            color: #20c997;
-            text-shadow: 0 0 15px rgba(32, 201, 151, 0.3);
-        }
-        
-        .tech-icon span {
-            font-size: 0.9rem;
-            color: #d1e8ff;
-        }
-        
-        .stats {
+        .stats-container {
+            position: relative;
+            z-index: 2;
             display: flex;
             justify-content: space-around;
-            width: 100%;
-            margin: 2rem 0;
             flex-wrap: wrap;
-            gap: 1.5rem;
+            gap: 40px;
         }
         
         .stat-item {
-            text-align: center;
-            padding: 1.5rem;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            min-width: 200px;
-            transition: all 0.3s ease;
-        }
-        
-        .stat-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-5px);
+            padding: 20px;
         }
         
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 700;
-            color: #20c997;
-            margin-bottom: 0.5rem;
+            color: #60a5fa;
+            margin-bottom: 10px;
         }
         
         .stat-label {
-            font-size: 1rem;
-            color: #d1e8ff;
+            font-size: 1.1rem;
+            opacity: 0.9;
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        /* Footer */
+        .footer {
+            background: #0f172a;
+            color: #cbd5e1;
+            padding: 60px 0 30px;
         }
         
-        @keyframes slideUp {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
         }
         
-        @keyframes pulse {
-            0% { box-shadow: 0 5px 20px rgba(32, 201, 151, 0.4); }
-            50% { box-shadow: 0 5px 30px rgba(32, 201, 151, 0.7); }
-            100% { box-shadow: 0 5px 20px rgba(32, 201, 151, 0.4); }
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
         }
         
-        @keyframes float {
-            0% { transform: translateY(0) rotate(0deg); }
-            100% { transform: translateY(-1000px) rotate(720deg); }
+        .footer-logo i {
+            color: #60a5fa;
         }
         
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: #6366f1;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .title {
+            h1 {
                 font-size: 2.5rem;
             }
             
-            .content {
-                flex-direction: column;
-                align-items: center;
+            .section-title {
+                font-size: 2rem;
             }
             
-            .card {
-                max-width: 100%;
-                padding: 2rem;
+            .features-grid {
+                grid-template-columns: 1fr;
             }
             
-            .stats {
+            .stats-container {
                 flex-direction: column;
-                align-items: center;
+                gap: 30px;
             }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .delayed-1 {
+            animation-delay: 0.2s;
+        }
+        
+        .delayed-2 {
+            animation-delay: 0.4s;
+        }
+        
+        .opacity-0 {
+            opacity: 0;
         }
     </style>
 </head>
 <body>
-    <div class="floating-elements" id="floatingElements"></div>
-    
-    <div class="container">
-        <header class="header">
-            <h1 class="title">Smart <span class="title-highlight">Diet</span> Recommendation System</h1>
-            <p class="subtitle">Get personalized diet plans powered by AI and machine learning. Our system analyzes your health profile, preferences, and goals to create the perfect nutrition plan for you.</p>
-            
-            <div class="stats">
-                <div class="stat-item">
-                    <div class="stat-number">10K+</div>
-                    <div class="stat-label">Users Served</div>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-apple-alt"></i>
+                    <span>DIET AI</span>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">500+</div>
-                    <div class="stat-label">Diet Plans</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">98%</div>
-                    <div class="stat-label">Satisfaction Rate</div>
-                </div>
-            </div>
-        </header>
-        
-        <div class="content">
-            <div class="card">
-                <h2 class="card-title"><i class="fas fa-brain"></i> AI-Powered Intelligence</h2>
-                <p>Our advanced algorithm uses machine learning to analyze your health data and provide personalized diet recommendations tailored to your specific needs.</p>
-                <ul class="feature-list">
-                    <li><i class="fas fa-check"></i> Personalized meal plans</li>
-                    <li><i class="fas fa-check"></i> Calorie and nutrient tracking</li>
-                    <li><i class="fas fa-check"></i> Food preference consideration</li>
-                    <li><i class="fas fa-check"></i> Allergy and restriction filters</li>
-                    <li><i class="fas fa-check"></i> Progress prediction models</li>
-                </ul>
                 
-                <div class="tech-icons">
-                    <div class="tech-icon">
-                        <i class="fab fa-python"></i>
-                        <span>Python</span>
-                    </div>
-                    <div class="tech-icon">
-                        <i class="fas fa-robot"></i>
-                        <span>AI/ML</span>
-                    </div>
-                    <div class="tech-icon">
-                        <i class="fas fa-database"></i>
-                        <span>Data Science</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="card">
-                <h2 class="card-title"><i class="fas fa-heartbeat"></i> Health & Wellness</h2>
-                <p>We prioritize your health goals, whether it's weight loss, muscle gain, managing medical conditions, or simply maintaining a balanced lifestyle.</p>
-                <ul class="feature-list">
-                    <li><i class="fas fa-check"></i> Weight management plans</li>
-                    <li><i class="fas fa-check"></i> Medical condition support</li>
-                    <li><i class="fas fa-check"></i> Fitness goal alignment</li>
-                    <li><i class="fas fa-check"></i> Progress tracking & analytics</li>
-                    <li><i class="fas fa-check"></i> Real-time adjustments</li>
-                </ul>
+                <h1>Smart Diet Recommendation System</h1>
                 
-                <p style="margin-top: 1.5rem; font-style: italic;">"Your health is an investment, not an expense. Our system makes that investment smarter."</p>
+                <p class="tagline">
+                    Get personalized diet plans powered by AI and machine learning. Our system analyzes your health profile, preferences, and goals to create the perfect nutrition plan for you.
+                </p>
                 
-                <a href="https://smart-diet-recommendation-system-bbpi4kvhugbxtvwjvo5esv.streamlit.app/Diet_Recommendation" target="_blank" class="app-button">
-                    <i class="fas fa-rocket"></i> Launch Live App
+                <a href="https://smart-diet-recommendation-system-bbpi4kvhugbxtvwjvo5esv.streamlit.app/Diet_Recommendation" target="_blank" class="cta-button">
+                    <i class="fas fa-rocket"></i>
+                    Launch Application
                 </a>
             </div>
         </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="content-section">
+            <div class="container">
+                <h2 class="section-title opacity-0 animate-fade-in-up">Advanced Features</h2>
+                
+                <div class="features-grid">
+                    <!-- AI-Powered Recommendations Card -->
+                    <div class="feature-card opacity-0 animate-fade-in-up delayed-1">
+                        <div class="feature-icon ai-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        
+                        <h3>AI-Powered Recommendations</h3>
+                        
+                        <p>
+                            Our advanced algorithm uses machine learning to analyze your health data and provide personalized diet recommendations tailored to your specific needs.
+                        </p>
+                        
+                        <ul class="feature-list">
+                            <li>
+                                <i class="fas fa-check"></i>
+                                <span>Personalized meal plans</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check"></i>
+                                <span>Calorie and nutrient tracking</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check"></i>
+                                <span>Food preference consideration</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check"></i>
+                                <span>Allergy and restriction filters</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Health & Wellness Focus Card -->
+                    <div class="feature-card opacity-0 animate-fade-in-up delayed-2">
+                        <div class="feature-icon health-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        
+                        <h3>Health & Wellness Focus</h3>
+                        
+                        <p>
+                            We prioritize your health goals, whether it's weight loss, muscle gain, managing medical conditions, or simply maintaining a balanced lifestyle.
+                        </p>
+                        
+                        <ul class="feature-list">
+                            <li>
+                                <i class="fas fa-check"></i>
+                                <span>Weight management plans</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check"></i>
+                                <span>Medical condition support</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check"></i>
+                                <span>Fitness goal alignment</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check"></i>
+                                <span>Progress tracking</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
         
-        <footer class="footer">
-            <p>© 2023 Smart Diet Recommendation System. All rights reserved.</p>
-            <p>This application is for educational and informational purposes only. Always consult with a healthcare professional.</p>
-        </footer>
-    </div>
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="container">
+                <div class="stats-container">
+                    <div class="stat-item opacity-0 animate-fade-in-up">
+                        <div class="stat-number" id="stat1">0</div>
+                        <div class="stat-label">Personalized Plans</div>
+                    </div>
+                    
+                    <div class="stat-item opacity-0 animate-fade-in-up delayed-1">
+                        <div class="stat-number" id="stat2">0</div>
+                        <div class="stat-label">Happy Users</div>
+                    </div>
+                    
+                    <div class="stat-item opacity-0 animate-fade-in-up delayed-2">
+                        <div class="stat-number" id="stat3">0%</div>
+                        <div class="stat-label">Success Rate</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-apple-alt"></i>
+                    <span>Diet AI System</span>
+                </div>
+                
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Smart Diet Recommendation System. All rights reserved.</p>
+                <p>This application is for educational and informational purposes only.</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
-        // Create floating elements for background
+        // Animate elements when they come into view
         document.addEventListener('DOMContentLoaded', function() {
-            const floatingContainer = document.getElementById('floatingElements');
-            const colors = [
-                'rgba(32, 201, 151, 0.1)',
-                'rgba(0, 168, 255, 0.1)',
-                'rgba(255, 255, 255, 0.07)',
-                'rgba(10, 38, 71, 0.15)'
-            ];
+            // Set up Intersection Observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
             
-            for (let i = 0; i < 20; i++) {
-                const element = document.createElement('div');
-                element.classList.add('floating-element');
-                
-                // Random properties
-                const size = Math.random() * 120 + 20;
-                const posX = Math.random() * 100;
-                const posY = Math.random() * 100 + 100;
-                const color = colors[Math.floor(Math.random() * colors.length)];
-                const delay = Math.random() * 5;
-                const duration = Math.random() * 25 + 20;
-                
-                element.style.width = `${size}px`;
-                element.style.height = `${size}px`;
-                element.style.left = `${posX}%`;
-                element.style.top = `${posY}%`;
-                element.style.background = color;
-                element.style.animationDelay = `${delay}s`;
-                element.style.animationDuration = `${duration}s`;
-                
-                floatingContainer.appendChild(element);
-            }
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in-up');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
             
-            // Add some interactivity to the button
-            const appButton = document.querySelector('.app-button');
-            appButton.addEventListener('mouseenter', function() {
-                this.innerHTML = '<i class="fas fa-bolt"></i> Launch Live App';
-            });
-            
-            appButton.addEventListener('mouseleave', function() {
-                this.innerHTML = '<i class="fas fa-rocket"></i> Launch Live App';
+            // Observe all elements with opacity-0 class
+            document.querySelectorAll('.opacity-0').forEach(el => {
+                observer.observe(el);
             });
             
             // Animate stats counter
-            const statNumbers = document.querySelectorAll('.stat-number');
-            statNumbers.forEach(stat => {
-                const target = parseInt(stat.textContent);
-                const suffix = stat.textContent.replace(/[0-9]/g, '');
+            const statElements = [
+                { element: document.getElementById('stat1'), target: 2500, suffix: '' },
+                { element: document.getElementById('stat2'), target: 5000, suffix: '+' },
+                { element: document.getElementById('stat3'), target: 95, suffix: '%' }
+            ];
+            
+            function animateCounter(stat) {
                 let current = 0;
-                const increment = target / 50;
+                const increment = stat.target / 100;
                 const timer = setInterval(() => {
                     current += increment;
-                    if (current >= target) {
-                        current = target;
+                    if (current >= stat.target) {
+                        current = stat.target;
                         clearInterval(timer);
                     }
-                    stat.textContent = Math.floor(current) + suffix;
-                }, 30);
-            });
+                    stat.element.textContent = Math.floor(current) + stat.suffix;
+                }, 20);
+            }
+            
+            // Start animation when stats section comes into view
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        statElements.forEach(stat => {
+                            if (stat.element) animateCounter(stat);
+                        });
+                        statsObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            const statsSection = document.querySelector('.stats-section');
+            if (statsSection) {
+                statsObserver.observe(statsSection);
+            }
+            
+            // Button hover effect enhancement
+            const ctaButton = document.querySelector('.cta-button');
+            if (ctaButton) {
+                ctaButton.addEventListener('mouseenter', function() {
+                    this.innerHTML = '<i class="fas fa-bolt"></i> Launch Application';
+                });
+                
+                ctaButton.addEventListener('mouseleave', function() {
+                    this.innerHTML = '<i class="fas fa-rocket"></i> Launch Application';
+                });
+            }
         });
     </script>
 </body>
