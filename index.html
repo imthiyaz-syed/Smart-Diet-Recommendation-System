@@ -1,14 +1,371 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Smart Diet Recommendation System</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Diet Recommendation System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0c3d2a 0%, #1a7d5e 30%, #2ecc8d 70%, #4ef7b8 100%);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwMCAxMDAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0iYSIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNTAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjZmZmZmZmIiBzdG9wLW9wYWNpdHk9IjAuMDUiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMC4wNSIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjYSkiLz48L3N2Zz4=');
+            opacity: 0.3;
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 100%;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #ffffff, #c8ffe6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            width: 100%;
+            margin-bottom: 3rem;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 2rem;
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            transition: all 0.3s ease;
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .card-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: #e1fff0;
+        }
+        
+        .card-title i {
+            color: #4ef7b8;
+        }
+        
+        .card p {
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-list li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .feature-list i {
+            color: #4ef7b8;
+            font-size: 0.9rem;
+        }
+        
+        .app-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0c3d2a;
+            background: linear-gradient(to right, #4ef7b8, #2ecc8d);
+            text-align: center;
+            text-decoration: none;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(46, 204, 141, 0.4);
+            margin-top: 1rem;
+            animation: pulse 2s infinite;
+        }
+        
+        .app-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(46, 204, 141, 0.6);
+            background: linear-gradient(to right, #5dffc5, #3ce6a3);
+        }
+        
+        .app-button:active {
+            transform: translateY(0);
+        }
+        
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 20s infinite linear;
+        }
+        
+        .footer {
+            margin-top: auto;
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .tech-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .tech-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .tech-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        .tech-icon i {
+            font-size: 2.5rem;
+            color: #4ef7b8;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 5px 15px rgba(46, 204, 141, 0.4); }
+            50% { box-shadow: 0 5px 25px rgba(46, 204, 141, 0.7); }
+            100% { box-shadow: 0 5px 15px rgba(46, 204, 141, 0.4); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-1000px) rotate(720deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .content {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .card {
+                max-width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>Smart Diet Recommendation System</h1>
-  <p>This app is built with Streamlit.</p>
-  <a href="https://smart-diet-recommendation-system-bbpi4kvhugbxtvwjvo5esv.streamlit.app/Diet_Recommendation">
-    Open Live App
-  </a>
+    <div class="floating-elements" id="floatingElements"></div>
+    
+    <div class="container">
+        <header class="header">
+            <h1 class="title">Smart Diet Recommendation System</h1>
+            <p class="subtitle">Get personalized diet plans powered by AI and machine learning. Our system analyzes your health profile, preferences, and goals to create the perfect nutrition plan for you.</p>
+        </header>
+        
+        <div class="content">
+            <div class="card">
+                <h2 class="card-title"><i class="fas fa-robot"></i> AI-Powered Recommendations</h2>
+                <p>Our advanced algorithm uses machine learning to analyze your health data and provide personalized diet recommendations tailored to your specific needs.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Personalized meal plans</li>
+                    <li><i class="fas fa-check-circle"></i> Calorie and nutrient tracking</li>
+                    <li><i class="fas fa-check-circle"></i> Food preference consideration</li>
+                    <li><i class="fas fa-check-circle"></i> Allergy and restriction filters</li>
+                </ul>
+                
+                <div class="tech-icons">
+                    <div class="tech-icon">
+                        <i class="fab fa-python"></i>
+                        <span>Python</span>
+                    </div>
+                    <div class="tech-icon">
+                        <i class="fas fa-brain"></i>
+                        <span>Machine Learning</span>
+                    </div>
+                    <div class="tech-icon">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Data Analysis</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2 class="card-title"><i class="fas fa-heartbeat"></i> Health & Wellness Focus</h2>
+                <p>We prioritize your health goals, whether it's weight loss, muscle gain, managing medical conditions, or simply maintaining a balanced lifestyle.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Weight management plans</li>
+                    <li><i class="fas fa-check-circle"></i> Medical condition support</li>
+                    <li><i class="fas fa-check-circle"></i> Fitness goal alignment</li>
+                    <li><i class="fas fa-check-circle"></i> Progress tracking</li>
+                </ul>
+                
+                <p style="margin-top: 1.5rem;">Our app is built with Streamlit for a seamless, interactive experience.</p>
+                
+                <a href="https://smart-diet-recommendation-system-bbpi4kvhugbxtvwjvo5esv.streamlit.app/Diet_Recommendation" target="_blank" class="app-button">
+                    <i class="fas fa-external-link-alt"></i> Open Live App
+                </a>
+            </div>
+        </div>
+        
+        <footer class="footer">
+            <p>© 2023 Smart Diet Recommendation System. All rights reserved.</p>
+            <p>This application is for educational and informational purposes only.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Create floating elements for background
+        document.addEventListener('DOMContentLoaded', function() {
+            const floatingContainer = document.getElementById('floatingElements');
+            const colors = [
+                'rgba(78, 247, 184, 0.15)',
+                'rgba(255, 255, 255, 0.1)',
+                'rgba(46, 204, 141, 0.2)',
+                'rgba(12, 61, 42, 0.15)'
+            ];
+            
+            for (let i = 0; i < 15; i++) {
+                const element = document.createElement('div');
+                element.classList.add('floating-element');
+                
+                // Random properties
+                const size = Math.random() * 100 + 20;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100 + 100;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 20 + 20;
+                
+                element.style.width = `${size}px`;
+                element.style.height = `${size}px`;
+                element.style.left = `${posX}%`;
+                element.style.top = `${posY}%`;
+                element.style.background = color;
+                element.style.animationDelay = `${delay}s`;
+                element.style.animationDuration = `${duration}s`;
+                
+                floatingContainer.appendChild(element);
+            }
+            
+            // Add some interactivity to the button
+            const appButton = document.querySelector('.app-button');
+            appButton.addEventListener('mouseenter', function() {
+                this.innerHTML = '<i class="fas fa-rocket"></i> Launch App';
+            });
+            
+            appButton.addEventListener('mouseleave', function() {
+                this.innerHTML = '<i class="fas fa-external-link-alt"></i> Open Live App';
+            });
+        });
+    </script>
 </body>
 </html>
 
